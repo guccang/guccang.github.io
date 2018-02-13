@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>GUCCANG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="GUCCANG">
+<meta property="og:url" content="https://github.com/guccang/guccang.github.io/page/2/index.html">
+<meta property="og:site_name" content="GUCCANG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GUCCANG">
+  
+    <link rel="alternate" href="/atom.xml" title="GUCCANG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GUCCANG</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/guccang/guccang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-django" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/12/django/" class="article-date">
+  <time datetime="2015-08-12T18:35:25.000Z" itemprop="datePublished">2015-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/12/django/">django</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>##使用django开发游戏web管理后台<br>   为什么需要这个web后台：运行时修改游戏服务器内容。比如活动开启,黑名单。。。<br>   在修改服务器数据时，做一些输入的限制性操作。即使你在地铁上也能够通过手机<br>   随时了解服务器的运行状况。<br>   使用方式：web后台修改mysql数据后，通知GameServer重新载入mysql配置文件。<br>   web后台在GameServer运行期间，增加，删除，修改GameServer中的数据。</p>
+<hr>
+<hr>
+<ul>
+<li>环境搭建。<br>apache2.4<br>Django1.8<br>python3.3.3<br>mod_wsgi.so模块，<br>mysql</li>
+<li>Django admin与GameServer服务器交互，http协议实现交互</li>
+<li>Django 与mysql交互，Django自带admin管理（增删改）</li>
+<li>使用Django的template进行交互UI展示（特定交互UI实现）</li>
+<li>部署相关</li>
+</ul>
+<hr>
+<p>###完成后看上去像是这样子</p>
+<ol>
+<li><p>webUI后台,login，logout，config，userinfo，restore(从mysql回滚数据到GameServer)<br>是webUI和GameServer交互的入口，根据需求任意增加</p>
+<p><img src="\imgs\django\django-01.png" alt="图片"></p>
+</li>
+<li><p>django的admin后台，用来操作mysql数据库</p>
+<p><img src="\imgs\django\django-02.png" alt="图片"><br><img src="\imgs\django\django-03.png" alt="图片"></p>
+</li>
+</ol>
+<hr>
+<p>##Django和GameServer之间的交互</p>
+<ul>
+<li>使用http协议，与GameServer之间进行数据交互。</li>
+<li>python的相关教程。Python3.x与python2.x差异,在使用过程中可以体会得到<br><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" rel="noopener">python教程</a></li>
+</ul>
+<hr>
+<p>##Django和MySql之间的交互</p>
+<ul>
+<li>Django自带的admin模块，提供了非常好的交互UI,对mysql数据库的增删改查，支持很容易使用</li>
+<li>Django相关教程<br><a href="https://docs.djangoproject.com/en/1.8/" target="_blank" rel="noopener">官方,非常详细的教程</a><br><a href="http://www.ziqiangxuetang.com/django/django-tutorial.html" target="_blank" rel="noopener">可以了解Django的运作机制</a></li>
+</ul>
+<hr>
+<p>##代码路径</p>
+<ol>
+<li>scut框架<br><a href="https://github.com/guccang/Scut">https://github.com/guccang/Scut</a><br>从scutgame官方fork过来的代码，用于更新scutgame框架错误</li>
+<li>服务器逻辑代码服务器逻辑代码<br><a href="https://github.com/guccang/scutlogic">https://github.com/guccang/scutlogic</a><br>服务器逻辑代码，写的action逻辑</li>
+<li>webUI<br><a href="https://github.com/guccang/django-GM-tools.git">https://github.com/guccang/django-GM-tools.git</a></li>
+</ol>
+<hr>
+<p>##环境搭建</p>
+<ol>
+<li><p>apache/django/python版本选择问题</p>
+<ul>
+<li><p>apache部署的时候需要用到，生产环境的mod_wsgi.so<br>因此需要根据mod_wsgi.so的支持来选择apache和python的版本。</p>
+</li>
+<li><p>apache2.4 下载的地址：官方网站只提供了源码下载，不提供二进制安装文件。<br>以下是apache官方推荐的下载地址之一，也是wsgi官方链接推荐的下载地址。<br><a href="http://www.apachelounge.com/download/" target="_blank" rel="noopener">http://www.apachelounge.com/download/</a><br>copy xxxx.whl 到 apache2.4 modual目录下<br>配置apache2.4各种目录</p>
+</li>
+<li><p>apache2.4对应的运行环境下载的地址：使用vc2015编译的apache2.4，需要安装对应的运行时vs环境<br><a href="http://www.microsoft.com/en-us/download/details.aspx?id=48145" target="_blank" rel="noopener">http://www.microsoft.com/en-us/download/details.aspx?id=48145</a></p>
+</li>
+<li><p>apache2.4上述路径下载玩apache后。是一个包含所有apache组建的文件夹。然后需要安装apache服务<br>到windows中区。<br>进入apache bin目录。httpd -k install</p>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><p>mod_wsgi官方网址：<a href="http://www.modwsgi.org/" target="_blank" rel="noopener">http://www.modwsgi.org/</a><br>找到mod_wsgi.so的windows下载的地址现在(2015/8/13)是：<br><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mod_wsgi" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#mod_wsgi</a><br>找得到如下whl文件下载地址：<br>mod_wsgi-4.4.13+ap24vc10-cp33-none-win_amd64.whl<br>mod_wsgi-4.4.13+ap24vc10-cp33-none-win32.whl<br>ap24=apache2.4<br>cp33=python3.3.x<br>win_amd64=windows os 64<br>win32=windows os 32</p>
+</li>
+<li><p>根据自己的环境找到对应的whl文件。<br>目前win64的只找到了python3的版本，没有python2.7。<br>因此python版本选择为3.3.32<br>apache选择apache2.4<br>pc是windows10,64位，选则win_amd64.whl<br>最后选择结果:mod_wsgi-4.4.13+ap24vc10-cp33-none-win_amd64.whl</p>
+</li>
+<li><p>whl文件。<br>使用pip 安装whl文件<br>pip install whl完整路径<br>会将mod_wsgi.so文件下载下来。<br>mod_wsgi.so下载的地址：<br><a href="http://www.modwsgi.org/" target="_blank" rel="noopener">http://www.modwsgi.org/</a><br><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mod_wsgi" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#mod_wsgi</a><br>pip install xxxx.whl</p>
+</li>
+</ul>
+</li>
+<li><p>python下载的地址：</p>
+<ul>
+<li><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">https://www.python.org/downloads/</a><br>pip 工具下载地址：<br><a href="https://pypi.python.org/pypi/pip#downloads" target="_blank" rel="noopener">https://pypi.python.org/pypi/pip#downloads</a><br>python setup.py install </li>
+</ul>
+</li>
+<li><p>django 安装<br>pip install django</p>
+</li>
+<li><p>mysqldb安装<br><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient</a></p>
+</li>
+</ol>
+<p>####至此搭建环境所需的所有东西都齐全了。apache2.4 python3.3.3 </p>
+<hr>
+<p>##部署问题</p>
+<ol>
+<li><p>apache + wsgi + django<br>apache配置wsgi相关<br>apache配置django静态文件路径<br>django配置静态文件搜集路径</p>
+<p><em>无法载入css，img，js相关静态文件问题：
+</em>apache配置 config</p>
+<pre><code>LoadModule wsgi_module modules/mod_wsgi.so
+WSGIScriptAlias / C:/Python33/src/mysite/mysite/wsgi.py
+WSGIPythonPath C:/Python33/src/mysite
+&lt;Directory C:/Python33/src/mysite/mysite&gt;
+&lt;Files wsgi.py&gt;
+    Require all granted
+    Require ip 127.0.0.1
+&lt;/Files&gt;
+&lt;/Directory&gt;
+</code></pre><p><em>这个目录是django 配置的静待资源根目录。
+</em>有这个后，再加上django配置，就可以顺利的找到css，img，js相关文件。</p>
+<pre><code>Alias /static/ C:/Python33/src/mysite/mysite/static/
+&lt;Directory C:/Python33/src/mysite/mysite/static/&gt;
+    Require all granted
+&lt;/Directory&gt;
+</code></pre></li>
+<li><p>setting配置<br>django部署后，css、js、图片都无法显示。<br>setting.py 设置：</p>
+<pre><code>STATIC_URL = &apos;/static/&apos;
+STATIC_ROOT = &apos;c:/Python33/src/mysite/mysite/static/&apos;
+</code></pre><p>其他不变即可。<br>运行 python manage.py collectstatic<br>将app的static文件夹下的所有资源放到STATIC_ROOT之下</p>
+</li>
+<li><p>数据库修改后同步<br>数据表重建：数据库模型修改后同步给开发服务器。<br>数据库model和view、template不同,修改后无法及时同步。<br>python makemigrations<br>python migrate</p>
+<p>数据表导出,将连接的数据库的所有表导出到models_all.py文件中<br>python manage.py inspectdb &gt; models_all.py </p>
+</li>
+<li><p>运行时网站反应速度慢<br>使用apache自带的工具启动apache服务。</p>
+</li>
+<li><p>BUG</p>
+<ul>
+<li>1264 - Out of range value adjusted for column ‘ID’ at row 1<br>byte类型  mysql tinyint 有符号<br>mysql默认有符号,应该改为无符号。</li>
+<li>将apache bin的目录弄错了。导致httpd.cfg 读取别的,修改无用</li>
+<li></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/08/12/django/" data-id="cjdlyyj2q0009x9pvgau6dw3q" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/django/">django</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C-流" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/11/C-流/" class="article-date">
+  <time datetime="2015-08-11T14:19:08.000Z" itemprop="datePublished">2015-08-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/11/C-流/">C# 流</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/08/11/C-流/" data-id="cjdlyyj2a0000x9pvq4f59qsh" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Protobuf-inheritance" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/04/Protobuf-inheritance/" class="article-date">
+  <time datetime="2015-08-04T23:21:21.000Z" itemprop="datePublished">2015-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/04/Protobuf-inheritance/">Protobuf inheritance</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<ol>
+<li><p>protobuf-net for c#<br>序列化子类别时,需要在父类中ProtoInclude来确保父类数据，也正确<br>别序列化。</p>
+<pre><code>[ProtoInclude(1,typeof(DerivedClass))]
+public class BaseClass
+{
+}
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/08/04/Protobuf-inheritance/" data-id="cjdlyyj2e0001x9pvwrnfltyy" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/protobuf/">protobuf</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git-log" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/31/git-log/" class="article-date">
+  <time datetime="2015-07-31T04:12:25.000Z" itemprop="datePublished">2015-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/31/git-log/">git log</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+<ul>
+<li>作用:显示所有HEAD改变历史</li>
+<li>HEAD改变条件有  </li>
+<li>git commit命令  </li>
+<li>分支切换</li>
+<li>git merge命令</li>
+<li>…待补充</li>
+</ul>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>作用: 查看提交历史</p>
+</li>
+<li><p>参数：</p>
+<ul>
+<li>-p 按补丁格式显示每个更新之间的差异。</li>
+<li>–stat 显示每次更新的文件修改统计信息。</li>
+<li>–shortstat 只显示 –stat 中最后的行数修改添加移除统计。</li>
+<li>–name-only 仅在提交信息后显示已修改的文件清单。</li>
+<li>–name-status 显示新增、修改、删除的文件清单。</li>
+<li>–abbrev-commit 仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。</li>
+<li>–relative-date 使用较短的相对时间显示（比如，“2 weeks ago”）。</li>
+<li>–graph 显示 ASCII 图形表示的分支合并历史。</li>
+<li>–pretty 使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。</li>
+</ul>
+</li>
+<li><p>常用参数: </p>
+<ul>
+<li>git log -p      // -p表示显示，提交历史的差异部分。</li>
+<li>git log -n         // n为数字,表示显示n条git 提交数据。没有-p 不会显示提交历史。比较整洁。</li>
+<li>git log –stat  // –stat 仅仅显示，增改行数的统计。</li>
+<li>git log –graph // 图形化显示分支提交数据</li>
+</ul>
+</li>
+<li><p>格式化参数:</p>
+<ul>
+<li>git log –pretty=oneline // 表示log数据在一行显示，和整洁。</li>
+<li>git log –pretty=format:”%h - %an, %ar : %s” // format参数，后面接占位符。</li>
+</ul>
+</li>
+</ol>
+<pre><code>选项         说明
+%H            提交对象（commit）的完整哈希字串
+%h            提交对象的简短哈希字串
+%T            树对象（tree）的完整哈希字串
+%t            树对象的简短哈希字串
+%P            父对象（parent）的完整哈希字串
+%p            父对象的简短哈希字串
+%an            作者（author）的名字
+%ae            作者的电子邮件地址
+%ad            作者修订日期（可以用 -date= 选项定制格式）
+%ar            作者修订日期，按多久以前的方式显示
+%cn            提交者(committer)的名字
+%ce            提交者的电子邮件地址
+%cd            提交日期
+%cr            提交日期，按多久以前的方式显示
+%s            提交说明
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/07/31/git-log/" data-id="cjdlyyj2u000dx9pv67v0gekf" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-win8-1-update-to-win10-vs2013-bug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/30/win8-1-update-to-win10-vs2013-bug/" class="article-date">
+  <time datetime="2015-07-30T14:51:47.000Z" itemprop="datePublished">2015-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/30/win8-1-update-to-win10-vs2013-bug/">win8.1 update to win10,vs2013 bug</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<hr>
+<ol>
+<li>windows8.1更新到windows10后<br>vs2013bug无法创建项目，已有项目无法编译。提示如下错误。<pre><code>未找到与约束ContractName Microsoft.VisualStudio.Text.ITextDocumentFactoryService...匹配的导出。
+</code></pre><img src="\imgs\vs2013Error\vs2013Error01.png" alt="图1"></li>
+<li><p>AppData\Roaming\Microsoft\VisualStudio\12.0\ActivityLog.xml相关错误。<br><img src="\imgs\vs2013Error\vs2013Error02.png" alt="图2"></p>
+</li>
+<li><p>解决办法:删除ComponentModelCache文件夹内所有文件。</p>
+<pre><code>Remove ComponentModelCache folder content.
+%AppData%\..\Local\Microsoft\VisualStudio\12.0\ComponentModelCache
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/07/30/win8-1-update-to-win10-vs2013-bug/" data-id="cjdlyyj33000nx9pvh17jl8gp" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visual-studio/">visual studio</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vs-自定义注释-代码段" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/28/vs-自定义注释-代码段/" class="article-date">
+  <time datetime="2015-07-28T15:35:10.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/28/vs-自定义注释-代码段/">vs 自定义注释/代码段</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<hr>
+<ol>
+<li><p>代码段管理：<br>创建一个snippet文件，导入到vs中。键入自定义字符后，tab键两次，自动生成注释/代码段。<br>snippet是讲一个key 与一段字符关联(可以使注释，可以是代码)<br>如~~vs中输入tryf，两次tab后直接输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try </span><br><span class="line">&#123;	        		    </span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义文件注释模板<br>vs中输入guccangFC ,tab键2次，自动生成如下注释。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/****************************************************************************</span><br><span class="line">    File:		AutoTest.cs</span><br><span class="line">    Desc:		Automated testing</span><br><span class="line">    Date:		2015-7-27</span><br><span class="line">    Author:		guccang</span><br><span class="line">    URL:		http://guccang.github.io</span><br><span class="line">    Email:		guccang@126.com</span><br><span class="line">****************************************************************************/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对应的snippet文件</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line"></span><br><span class="line">&lt;CodeSnippets xmlns=<span class="string">"http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet"</span>&gt;</span><br><span class="line"></span><br><span class="line">  &lt;CodeSnippet Format=<span class="string">"1.0.0"</span>&gt;</span><br><span class="line">    &lt;Header&gt;</span><br><span class="line">      &lt;Title&gt;FileComment&lt;/Title&gt;</span><br><span class="line">      &lt;Shortcut&gt;guccangFC&lt;/Shortcut&gt;</span><br><span class="line">      &lt;Description&gt;FileComment 语句的代码段&lt;/Description&gt;</span><br><span class="line">      &lt;Author&gt;guccang&lt;/Author&gt;</span><br><span class="line">      &lt;SnippetTypes&gt;</span><br><span class="line">        &lt;SnippetType&gt;Expansion&lt;/SnippetType&gt;</span><br><span class="line">        &lt;SnippetType&gt;SurroundsWith&lt;/SnippetType&gt;</span><br><span class="line">      &lt;/SnippetTypes&gt;</span><br><span class="line">    &lt;/Header&gt;</span><br><span class="line">	</span><br><span class="line">    &lt;Snippet&gt;</span><br><span class="line">      &lt;Declarations&gt;</span><br><span class="line">	    &lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Name&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;文件名&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;fileName&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line">		</span><br><span class="line">        &lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;License&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;授权&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;MIT&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Author&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;作者&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;guccang&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Date&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;日期&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;2015-7-21 11:11:11&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Desc&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;描述&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;添加文件描述&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;URL&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;url&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;http://guccang.github.io&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line"></span><br><span class="line">		&lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Email&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;Email&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;guccang@126.com&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">      &lt;/Declarations&gt;</span><br><span class="line"></span><br><span class="line">      &lt;Code Language=<span class="string">"csharp"</span>&gt;</span><br><span class="line">        &lt;![CDATA[</span><br><span class="line">		/****************************************************************************</span><br><span class="line">			File:		<span class="variable">$Name</span>$</span><br><span class="line">			Desc:		<span class="variable">$Desc</span>$</span><br><span class="line">			Date:		<span class="variable">$Date</span>$</span><br><span class="line">			Author:		<span class="variable">$Author</span>$</span><br><span class="line">			URL:		<span class="variable">$URL</span>$</span><br><span class="line">			Email:		<span class="variable">$Email</span>$</span><br><span class="line">	    ****************************************************************************/</span><br><span class="line">		<span class="variable">$selected</span>$ <span class="variable">$end</span>$]]&gt;</span><br><span class="line">      &lt;/Code&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/Snippet&gt;</span><br><span class="line">  &lt;/CodeSnippet&gt;</span><br><span class="line">&lt;/CodeSnippets&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>将上述文件保存为fileComment.snippet , snippet文件扩展名<br>打开vs导入snippet文件。<br>vs-工具-代码段管理<br><img src="\imgs\snippet.png" alt="图片"></p>
+</li>
+<li><p>参考资料<br>[官方]<a href="https://msdn.microsoft.com/zh-cn/library/ms165394(v=vs.120).aspx" target="_blank" rel="noopener">https://msdn.microsoft.com/zh-cn/library/ms165394(v=vs.120).aspx</a><br><a href="http://blog.csdn.net/oyi319/article/details/5605502" target="_blank" rel="noopener">博客01</a><br><a href="http://jingyan.baidu.com/article/ea24bc39b86ededa62b3311f.html" target="_blank" rel="noopener">博客02</a><br><a href="http://blog.csdn.net/nuaalfm/article/details/1772551" target="_blank" rel="noopener">博客03</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/07/28/vs-自定义注释-代码段/" data-id="cjdlyyj32000mx9pvfas7fdih" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visual-studio/">visual studio</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fork-me-on-GitHub" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/28/fork-me-on-GitHub/" class="article-date">
+  <time datetime="2015-07-28T15:25:49.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/28/fork-me-on-GitHub/">fork me on GitHub</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<ol>
+<li><p>点击进入<a href="https://github.com/blog/273-github-ribbons">github</a><br>选择喜欢的fork me on GitHub，粘贴代码</p>
+<pre><code>&lt;a href=&quot;https://github.com/you&quot;&gt;&lt;img style=&quot;position: absolute; top: 0; left: 0; border: 0;&quot; src=&quot;https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67&quot; alt=&quot;Fork me on GitHub&quot; data-canonical-src=&quot;https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png&quot;&gt;&lt;/a&gt;
+</code></pre></li>
+<li><p>修改代码href跳转url为你想跳转的页面。</p>
+<pre><code>&lt;a href=&quot;https://github.com/guccang&quot;&gt;&lt;img style=&quot;position: absolute; top: 0; left: 0; border: 0;&quot; src=&quot;https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67&quot; alt=&quot;Fork me on GitHub&quot; data-canonical-src=&quot;https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png&quot;&gt;&lt;/a&gt;
+</code></pre></li>
+<li><p>将代码粘贴到如下文件中</p>
+<pre><code>themes\landscape\layout\index.ejs
+</code></pre></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/07/28/fork-me-on-GitHub/" data-id="cjdlyyj2r000ax9pv54pmoitg" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git-command" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/22/git-command/" class="article-date">
+  <time datetime="2015-07-22T05:29:03.000Z" itemprop="datePublished">2015-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/22/git-command/">git command</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<hr>
+<p>##[git 命令]</p>
+<p>git 版本管理是基于快照(也就是copy备份)每个单独文件来完成的，而以前使用的svn则是记录了文件的不同部分。<br>git 有一个特点就是，每个版本只保留,上个版本变动的文件，因此非常优雅。</p>
+<hr>
+<ol>
+<li><p>git status<br>文件状态,git status<br>untracked-未加入github维护<br>unmodified-未改变的<br>modified-改变的/修改，新增，删除，冲突<br>staged-处于暂缓处区域的执行git add命令后进入staged状态,等待commit 到本地仓库。</p>
+</li>
+<li><p>git clone url name<br>clone创建工程</p>
+<pre><code>git init
+vim .gitignore
+git remote add origin url
+git push origin master
+</code></pre><p>本地创建工程<br>github创建项目 url<br>本地创建工程文件夹，进入文件夹<br>git init 初始化，用github管理文件夹<br>vim .gitignore 创建一个忽略文件，这很重要。<br>git remote add origin url 关联远程仓库，然后push，pull就用origin别名来做了。而不需要完整的url了。<br>git push origin master  / git push  / 默认在master分支，所以直接git push就将本地文件同步到远端仓库。<br>至此，仓库创建完成。</p>
+</li>
+<li><p>修改,添加,删除.</p>
+<pre><code>git status
+git add .
+git commit -a -m &quot;comment&quot;
+git push
+</code></pre><p>git staus 查看文件状态，修改，新增，删除，冲突。<br>git add . 添加所有状态改变文件。<br>git commit -a -m “comment” 提交到本地仓库，保存。生成commit日志。而后就确保了，你怎么乱来都不会丢失掉提交。<br>git push 讲修改同步到远端仓库。那么，呵呵~~永远都丢不了了。<br>git rm file 删除文件<br>git rm -rf dir 删除文件夹</p>
+</li>
+<li><p>分支相关</p>
+<pre><code>git branch -a 
+git checkout -b newBranch master
+git branch -d barnchName
+git branch -r -d branchName
+</code></pre><p>分支创建<br>git branch -a 查看所有分支<br>git checkout -b newBranch master 从master分支上创建一个名为newBranch的分支。<br>编辑，修改后。</p>
+<pre><code>git add .
+git commit -a -m &quot;comment&quot;
+</code></pre><p>git push 会提示错误如下</p>
+<pre><code>fatal: The current branch bare02 has no upstream branch.
+To push the current branch and set the remote as upstream, use
+git push --set-upstream origin bare02
+</code></pre><p>表示远端其实没有这个分支存在，需要使用如下简单命令即可。<br>git push -u origin newBranch 表示远端没有，那么就创建一个newBranch，然后提交ok，远端就有新分支名字叫做newBranch了<br>这样就ok了。</p>
+<p>删除分支</p>
+<pre><code>git branch -d origin/branchName
+git branch -r -d origin/branchName 远程仓库分支
+</code></pre></li>
+<li><p>抓取远端仓库数据</p>
+<pre><code>git pull origin
+git pull origin bare02
+</code></pre><p>其他人checkout分支<br>git pull origin<br>这个命令会将origin关联的所有分支都抓取下来。<br>git checkout newBranch 切换到newBranch分支。</p>
+<p>在分支上，合并其他分支修改。<br>比如，处于bare01分支，远端库bare02分支存在有用的内容，你需要合入。<br>这种情况通常发生在clone项目，或者开发项目想发布项目合并时发生。分支间的合并。<br>git pull origin bare02  然后你所处的分支bare01就会讲bare02的分支内容合并到bare01。<br>然后相当于执行了三部修改bare01，add执行，commit执行。剩下的就是push 操作，将合并同步到远端仓库了。</p>
+</li>
+<li><p>检出</p>
+<pre><code>git checkout
+</code></pre><p>git checkout 实际上是修改HEAD文件的内容，让其指向不同的branch<br>HEAD文件指向的branch就是当前branch.<br>一般来讲，HEAD的内容是指向staging（暂存区）的master文件的</p>
+<pre><code>detached HEAD
+</code></pre><p>如果让HEAD文件指向一个commit id，那就变成了detached HEAD。git checkout 可以达到这个效果</p>
+</li>
+<li><p>远端仓库操作</p>
+<pre><code>git pull / git fetch
+</code></pre><p>git fetch origin master:bare01 从远端仓库master分支抓取最新内容到本地bare01分支，这是files处于modified状态。<br>git diff bare01  比较一下，bare01分支和本地分支。<br>git merge bare01 合并bare01分支到本地分支<br>git pull 相当于 git fetch + git merge<br>git pull origin master 从远端仓库master分支抓取最新内容到HEAD指向分支，然后合并。</p>
+</li>
+<li><p>标签</p>
+<pre><code>git tag
+</code></pre><p>git tag 显示所有标签<br>git tag -a v0.2 -m “create v0.2 tag” 创建一个名叫v0.2的标签<br>git tag -d v0.2 删除标签<br>git push origin –tag 将所有标签同步到远端服务器。<br>git push origin:refs/tags/v0.2 删除远端标签</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/07/22/git-command/" data-id="cjdlyyj2t000cx9pv3rf96q6m" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CODE-COMPLETE/">CODE COMPLETE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINUX/">LINUX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Requirements/">Software Requirements</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boss/">boss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd-line/">cmd-line</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protobuf/">protobuf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visual-studio/">visual studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美文/">美文</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CODE-COMPLETE/" style="font-size: 15px;">CODE COMPLETE</a> <a href="/tags/LINUX/" style="font-size: 10px;">LINUX</a> <a href="/tags/Software-Requirements/" style="font-size: 10px;">Software Requirements</a> <a href="/tags/boss/" style="font-size: 10px;">boss</a> <a href="/tags/cmd-line/" style="font-size: 10px;">cmd-line</a> <a href="/tags/django/" style="font-size: 15px;">django</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/protobuf/" style="font-size: 10px;">protobuf</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/tools/" style="font-size: 15px;">tools</a> <a href="/tags/visual-studio/" style="font-size: 15px;">visual studio</a> <a href="/tags/美文/" style="font-size: 15px;">美文</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/02/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/23/mysql/">mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/18/不敢开除员工的创业者在想什么？/">不敢开除员工的创业者在想什么？</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/17/瑞士钟表匠/">瑞士钟表匠</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/10/Requirements/">Requirements</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Guccang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

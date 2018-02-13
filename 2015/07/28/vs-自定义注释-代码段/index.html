@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>vs 自定义注释/代码段 | GUCCANG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="代码段管理：创建一个snippet文件，导入到vs中。键入自定义字符后，tab键两次，自动生成注释/代码段。snippet是讲一个key 与一段字符关联(可以使注释，可以是代码)如~~vs中输入tryf，两次tab后直接输出 123456try &amp;#123;	        		    &amp;#125;finally&amp;#123;&amp;#125;  自定义文件注释模板vs中输入guccangFC ,t">
+<meta name="keywords" content="tools,visual studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vs 自定义注释&#x2F;代码段">
+<meta property="og:url" content="https://github.com/guccang/guccang.github.io/2015/07/28/vs-自定义注释-代码段/index.html">
+<meta property="og:site_name" content="GUCCANG">
+<meta property="og:description" content="代码段管理：创建一个snippet文件，导入到vs中。键入自定义字符后，tab键两次，自动生成注释/代码段。snippet是讲一个key 与一段字符关联(可以使注释，可以是代码)如~~vs中输入tryf，两次tab后直接输出 123456try &amp;#123;	        		    &amp;#125;finally&amp;#123;&amp;#125;  自定义文件注释模板vs中输入guccangFC ,t">
+<meta property="og:image" content="https://github.com/imgs/snippet.png">
+<meta property="og:updated_time" content="2018-02-13T18:02:35.315Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vs 自定义注释&#x2F;代码段">
+<meta name="twitter:description" content="代码段管理：创建一个snippet文件，导入到vs中。键入自定义字符后，tab键两次，自动生成注释/代码段。snippet是讲一个key 与一段字符关联(可以使注释，可以是代码)如~~vs中输入tryf，两次tab后直接输出 123456try &amp;#123;	        		    &amp;#125;finally&amp;#123;&amp;#125;  自定义文件注释模板vs中输入guccangFC ,t">
+<meta name="twitter:image" content="https://github.com/imgs/snippet.png">
+  
+    <link rel="alternate" href="/atom.xml" title="GUCCANG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GUCCANG</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/guccang/guccang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vs-自定义注释-代码段" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/28/vs-自定义注释-代码段/" class="article-date">
+  <time datetime="2015-07-28T15:35:10.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vs 自定义注释/代码段
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<hr>
+<ol>
+<li><p>代码段管理：<br>创建一个snippet文件，导入到vs中。键入自定义字符后，tab键两次，自动生成注释/代码段。<br>snippet是讲一个key 与一段字符关联(可以使注释，可以是代码)<br>如~~vs中输入tryf，两次tab后直接输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">try </span><br><span class="line">&#123;	        		    </span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义文件注释模板<br>vs中输入guccangFC ,tab键2次，自动生成如下注释。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/****************************************************************************</span><br><span class="line">    File:		AutoTest.cs</span><br><span class="line">    Desc:		Automated testing</span><br><span class="line">    Date:		2015-7-27</span><br><span class="line">    Author:		guccang</span><br><span class="line">    URL:		http://guccang.github.io</span><br><span class="line">    Email:		guccang@126.com</span><br><span class="line">****************************************************************************/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对应的snippet文件</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line"></span><br><span class="line">&lt;CodeSnippets xmlns=<span class="string">"http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet"</span>&gt;</span><br><span class="line"></span><br><span class="line">  &lt;CodeSnippet Format=<span class="string">"1.0.0"</span>&gt;</span><br><span class="line">    &lt;Header&gt;</span><br><span class="line">      &lt;Title&gt;FileComment&lt;/Title&gt;</span><br><span class="line">      &lt;Shortcut&gt;guccangFC&lt;/Shortcut&gt;</span><br><span class="line">      &lt;Description&gt;FileComment 语句的代码段&lt;/Description&gt;</span><br><span class="line">      &lt;Author&gt;guccang&lt;/Author&gt;</span><br><span class="line">      &lt;SnippetTypes&gt;</span><br><span class="line">        &lt;SnippetType&gt;Expansion&lt;/SnippetType&gt;</span><br><span class="line">        &lt;SnippetType&gt;SurroundsWith&lt;/SnippetType&gt;</span><br><span class="line">      &lt;/SnippetTypes&gt;</span><br><span class="line">    &lt;/Header&gt;</span><br><span class="line">	</span><br><span class="line">    &lt;Snippet&gt;</span><br><span class="line">      &lt;Declarations&gt;</span><br><span class="line">	    &lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Name&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;文件名&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;fileName&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line">		</span><br><span class="line">        &lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;License&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;授权&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;MIT&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Author&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;作者&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;guccang&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line"></span><br><span class="line">        &lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Date&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;日期&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;2015-7-21 11:11:11&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Desc&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;描述&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;添加文件描述&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;URL&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;url&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;http://guccang.github.io&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line"></span><br><span class="line">		&lt;Literal&gt;</span><br><span class="line">          &lt;ID&gt;Email&lt;/ID&gt;</span><br><span class="line">          &lt;ToolTip&gt;Email&lt;/ToolTip&gt;</span><br><span class="line">          &lt;Default&gt;guccang@126.com&lt;/Default&gt;</span><br><span class="line">        &lt;/Literal&gt;</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">      &lt;/Declarations&gt;</span><br><span class="line"></span><br><span class="line">      &lt;Code Language=<span class="string">"csharp"</span>&gt;</span><br><span class="line">        &lt;![CDATA[</span><br><span class="line">		/****************************************************************************</span><br><span class="line">			File:		<span class="variable">$Name</span>$</span><br><span class="line">			Desc:		<span class="variable">$Desc</span>$</span><br><span class="line">			Date:		<span class="variable">$Date</span>$</span><br><span class="line">			Author:		<span class="variable">$Author</span>$</span><br><span class="line">			URL:		<span class="variable">$URL</span>$</span><br><span class="line">			Email:		<span class="variable">$Email</span>$</span><br><span class="line">	    ****************************************************************************/</span><br><span class="line">		<span class="variable">$selected</span>$ <span class="variable">$end</span>$]]&gt;</span><br><span class="line">      &lt;/Code&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/Snippet&gt;</span><br><span class="line">  &lt;/CodeSnippet&gt;</span><br><span class="line">&lt;/CodeSnippets&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>将上述文件保存为fileComment.snippet , snippet文件扩展名<br>打开vs导入snippet文件。<br>vs-工具-代码段管理<br><img src="\imgs\snippet.png" alt="图片"></p>
+</li>
+<li><p>参考资料<br>[官方]<a href="https://msdn.microsoft.com/zh-cn/library/ms165394(v=vs.120).aspx" target="_blank" rel="noopener">https://msdn.microsoft.com/zh-cn/library/ms165394(v=vs.120).aspx</a><br><a href="http://blog.csdn.net/oyi319/article/details/5605502" target="_blank" rel="noopener">博客01</a><br><a href="http://jingyan.baidu.com/article/ea24bc39b86ededa62b3311f.html" target="_blank" rel="noopener">博客02</a><br><a href="http://blog.csdn.net/nuaalfm/article/details/1772551" target="_blank" rel="noopener">博客03</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://github.com/guccang/guccang.github.io/2015/07/28/vs-自定义注释-代码段/" data-id="cjdlyyj32000mx9pvfas7fdih" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tools/">tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/visual-studio/">visual studio</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/30/win8-1-update-to-win10-vs2013-bug/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          win8.1 update to win10,vs2013 bug
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/28/fork-me-on-GitHub/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">fork me on GitHub</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CODE-COMPLETE/">CODE COMPLETE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINUX/">LINUX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Requirements/">Software Requirements</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boss/">boss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd-line/">cmd-line</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protobuf/">protobuf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tools/">tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/visual-studio/">visual studio</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美文/">美文</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CODE-COMPLETE/" style="font-size: 15px;">CODE COMPLETE</a> <a href="/tags/LINUX/" style="font-size: 10px;">LINUX</a> <a href="/tags/Software-Requirements/" style="font-size: 10px;">Software Requirements</a> <a href="/tags/boss/" style="font-size: 10px;">boss</a> <a href="/tags/cmd-line/" style="font-size: 10px;">cmd-line</a> <a href="/tags/django/" style="font-size: 15px;">django</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/protobuf/" style="font-size: 10px;">protobuf</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/tools/" style="font-size: 15px;">tools</a> <a href="/tags/visual-studio/" style="font-size: 15px;">visual studio</a> <a href="/tags/美文/" style="font-size: 15px;">美文</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/02/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/23/mysql/">mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/18/不敢开除员工的创业者在想什么？/">不敢开除员工的创业者在想什么？</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/17/瑞士钟表匠/">瑞士钟表匠</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/10/Requirements/">Requirements</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Guccang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
